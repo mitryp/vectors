@@ -29,7 +29,7 @@ II. Getting vector's coorinates
       >>> a()  # get a tuple of vector's coordinates
       Output: (1, 0)  
       ```
-      > You can use `vector.vector()` for the same result
+      > You can use `vector.vector` for the same result
       
    2. Geting exact coordinate:
       ```
@@ -68,6 +68,7 @@ IV. Operations with vectors
       >>> c()
       Output: (4, 5)
       ```
+      > You can use `+=` with other vector to change vector directly
       
    2. Subtraction
       ```
@@ -81,6 +82,7 @@ IV. Operations with vectors
       >>> c()
       Output: (2, 5)
       ```
+      > You can use `-=` with other vector to change vector directly
       
    3. Multiplication
       1. By other vector:
@@ -93,7 +95,7 @@ IV. Operations with vectors
       >>> scalar_mult_vectors(a, b)  # using function of the module
       Output: 3.0
       ```
-      ##### Note that while you using mathematical operators to multiply vectors you CAN'T use it more than once in a row: 
+      **Note that while you using mathematical operators to multiply vectors you CAN'T use it more than once in a row:**
       ```
       >>> a * b * c
       Output:
@@ -113,6 +115,7 @@ IV. Operations with vectors
       >>> c()
       Output: (9, 15)
       ```
+      > You can use `*=` *only* with other vector to change vector directly
       
    4. Getting angle between vectors:
       ```
@@ -128,7 +131,8 @@ IV. Operations with vectors
   - [x] Sum
   - [x] Sub
   - [x] Mult by number
-  - [x] Mult by vector
+  - [x] Scalar multilpication with vector
+  - [ ] Vector multilpication with vector
   - [ ] Power by number
 - [x] Vector calculations
   - [x] Absolute value - `absolute_vector()`
@@ -137,11 +141,11 @@ IV. Operations with vectors
   - [ ] Is zero - `vector.iszero()`
   - [ ] Is (not) parallel - `vector.isparallel()`
   - [ ] Is perpendicular - `vector.isperpendicular()`
-- [ ] Assignment operations
+- [x] Assignment operations
   - [x] +=
-  - [ ] -=
-  - [ ] *=
+  - [x] -=
+  - [x] *=
   - [ ] **=
   - [ ] /= (for numbers only)
 - [ ] Other
-  - [ ] Negative vector (Urgent)
+  - [ ] Negative vector
