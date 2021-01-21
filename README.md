@@ -18,12 +18,12 @@ Vectors can be added, subbed, multiplied by other vector or by int/float and mor
 7. `vector_from_dots(dot1, dot2)` : calculates vector from two given dots. Returns Vector2D.
 
 ## Examples:
-0. Creating vectors
-```
->>> a = Vector2D((1,0))  # unit vector a(1;0)
->>> b = Vector2D((3,5))  # vector b(3;5)
-```
-I. Getting vector's coorinates
+I. Creating vectors
+   ```
+   >>> a = Vector2D((1,0))  # unit vector a(1;0)
+   >>> b = Vector2D((3,5))  # vector b(3;5)
+   ```
+II. Getting vector's coorinates
    1. As a tuple:
       ```
       >>> a()  # get a tuple of vector's coordinates
@@ -34,6 +34,7 @@ I. Getting vector's coorinates
       >>> a.vector()
       Output: (1, 0)
       ```
+      
    2. Geting exact coordinate:
       ```
       >>> a[0]  # get "x" coorinate of vector a
@@ -42,7 +43,7 @@ I. Getting vector's coorinates
       >>> b[1]  # get "y" coordinate of vector b
       Output: 5
       ```
-II. Getting absolute value of vector
+III. Getting absolute value of vector
    ```
    >>> abs(a)  # using native Python function
    Output: 1.0
@@ -56,7 +57,7 @@ II. Getting absolute value of vector
    >>> absolute_vector(b)
    Output: 5.830951894845301
    ```
-III. Operations with vectors
+IV. Operations with vectors
    1. Addition
       ```
       >>> c = a + b  # using mathematical operator  # returns Vector2D
@@ -69,6 +70,7 @@ III. Operations with vectors
       >>> c()
       Output: (4, 5)
       ```
+      
    2. Subtraction
       ```
       >>> c = b - a  # using mathematical operator  # returns Vector2D
@@ -81,6 +83,7 @@ III. Operations with vectors
       >>> c()
       Output: (2, 5)
       ```
+      
    3. Multiplication
       1. By other vector:
       ```
@@ -92,13 +95,14 @@ III. Operations with vectors
       >>> scalar_mult_vectors(a, b)  # using function of the module
       Output: 3.0
       ```
-      ### Note that while you using mathematical operators to multiply vectors you CAN'T use it more than once in a row: 
+      ##### Note that while you using mathematical operators to multiply vectors you CAN'T use it more than once in a row: 
       ```
       >>> a * b * c
       Output:
          TypeError: unsupported operand type(s) for *: 'float' and 'Vector2D'
       ```
       You can use `scalar_mult_vectors(a, b, c)` instead.
+      
       2. By number:
       ```
       >>> c = b * 2  # using mathematical operator  # returns Vector2D
@@ -111,6 +115,7 @@ III. Operations with vectors
       >>> c()
       Output: (9, 15)
       ```
+      
    4. Getting angle between vectors:
       ```
       >>> get_angle(a, b)  # returns angle between vectors in radians
