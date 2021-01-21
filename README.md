@@ -1,13 +1,14 @@
-## Vectors2D
+# Vectors2D
 It's a small module that adds class Vector2D and operations with vectors.
 All functions take Vector2D. Also they take tuples or lists with len == 2 of int/float.
-Vectors can be added, multiplied by other vector or by int/float and you can get angle between two vectors.
+Vectors can be added, subbed, multiplied by other vector or by int/float and more. You can find all the functions of the module below.
+
 ---
-# Classes:
+## Class:
 ` Vector2D ` : takes tuple or list of coordinates with length 2 when creating. If not given, creates zero vector (0;0). Also can take other Vector2D object.
 
 
-# Functions:
+## Functions:
 1. `absolute_vector(vector)` : calculates absolute value of given vector. Takes Vector2D object, list or tuple. Returns float;
 2. `add_vectors(*vectors)` : adds all the given vectors. Takes Vector2D objects, lists and tuples in any combination. Returns Vector2D;
 3. `sub_vectors(*vectors)` : subtracts all the given vectors. Takes Vector2D objects, lists and tuples in any combination. Returns Vector2D;
@@ -15,6 +16,20 @@ Vectors can be added, multiplied by other vector or by int/float and you can get
 5. `scalar_mult_vectors(vectors*)` : calculates scalar multiplication of given vectors. Takes Vector2D objects, lists and tuples in any combination. Returns float;
 6. `get_angle(vector1, vector2)` : returns angle between two given vectors in radians. Takes Vector2D objects, lists and tuples in any combination. Returns float;
 7. `vector_from_dots(dot1, dot2)` : calculates vector from two given dots. Returns Vector2D.
+
+## Examples:
+```
+a = Vector2D((1,0))  # unit vector a(1;0)
+```
+1. Calling vector's coorinates
+```
+print(a())  # print a tuple of vector's coordinates
+Output: (1; 0)
+
+print(a[0])  # print "x" coorinate of a
+Output: 1
+
+```
 
 ## TODO list:
 - [x] Vector object with 2 coordinates
