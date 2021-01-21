@@ -3,7 +3,7 @@
 # from
 """Small module that adds class Vector2D and operations with vectors.
 
-All functions take Vector2D. Also they take tuples or lists with len == 2 of int/float.
+All functions take Vector2D. Also they take tuples or lists of int/float with len == 2.
 Vectors can be added, multiplied by other vector or by int/float and you can get angle between two vectors.
 
 Vector2D + Vector2D -> sum_vectors() -> Vector2D
@@ -16,46 +16,53 @@ from math import sqrt, acos
 
 
 class Vector2D:
-    def __init__(self, args=None):
+    def __init__(self, *args: (int, float, tuple, list, object)):
         """Create vector
 
         Takes tuple or list of int/float with length == 2
         :param args: list or tuple with len == 2 of int/float default = [0,0]
 
         """
-        if args is None:
+        # print(args, type(args), len(args))
+        if len(args) == 0:
             args = [0, 0]
+            # self.x, self.y = args[0], args[1]
+            self.vector = list(args)
 
-        elif type(args) == type(self):
-            self.x, self.y = args.x, args.y
+        elif len(args) == 1:
+            # self.x = args[0]
+            if type(args[0]) in [list, tuple]:
+                self.vector = args[0]
+            elif type(args[0]) is type(self):
+                self.vector = args[0]()
+            else:
+                self.vector = [args[0], 0]
 
-        elif len(args) != 2:
-            raise ValueError
+        elif len(args) > 2:
+            raise TypeError
 
         else:
-            self.x, self.y = args[0], args[1]
+            if type(args[0]) in [int, float] and type(args[1]) in [int, float]:
+                # self.x, self.y = args[0], args[1]
+                self.vector = list(args)
+            else:
+                raise TypeError
 
     # TODO: Do +=, -=, *= etc
 
     def __getitem__(self, key: int):
-        if key == 0:
-            return self.x
-
-        elif key == 1:
-            return self.y
-
-        else:
+        if key > len(self.vector) - 1 or key < -1:
             raise IndexError
 
-    def __setitem__(self, key: int, value: (int, float)):
-    	if key == 0:
-    		self.x = value
-    	
-    	elif key == 1:
-    		self.y = value
+        else:
+            return self.vector[key]
 
-    	else: 
-    		raise IndexError
+    def __setitem__(self, key: int, value: (int, float)):
+        if key > len(self.vector)-1 or key < -1:
+            raise IndexError
+
+        else:
+            self.vector[key] = value
 
     def __abs__(self):
         """Absolute value of vector
@@ -70,7 +77,7 @@ class Vector2D:
 
     def __eq__(self, other):
         if type(other) in (type(self), tuple, list):
-            return self.vector() == Vector2D(other).vector()
+            return self.vector == Vector2D(other).vector
 
         elif type(other) in (bool, int, float):
             return self.__abs__() == other
@@ -107,34 +114,21 @@ class Vector2D:
         else:
             raise TypeError
 
+    def __imul__(self, other: (int, float)):
+        return mult_vector(self.vector, other)
+
     def __call__(self):
         """
         :return: tuple(x, y)
         """
-        return self.vector()
-
-    def coords(self):
-        """
-        Returns two values vector coordinates: x and y
-
-        :return: x, y
-        """
-        return self.x, self.y
-
-    def vector(self):
-        """
-        Returns tuple of vector's coordinates.
-
-        :return: tuple(x,y)
-        """
-        return tuple((self.x, self.y))
+        return self.vector
 
 
 def absolute_vector(vector: (Vector2D, list, tuple)):
     """
     Calculates absolute value of given vector.
 
-    :param vectors: Vector2D or list or tuple
+    :param vector: Vector2D or list or tuple
     :return: float
     """
     if type(vector) is not Vector2D:
@@ -154,7 +148,6 @@ def sum_vectors(*vectors: (Vector2D, list, tuple)):
     for vector in vectors:
         if type(vector) is not Vector2D:
             vector = Vector2D(vector)
-
         result[0] += vector[0]
         result[1] += vector[1]
 
