@@ -10,7 +10,7 @@ Vectors can be added, subbed, multiplied by other vector or by int/float and mor
 
 ## Global functions:
 1. `absolute_vector(vector)` : calculates absolute value of given vector. Takes Vector2D object, list or tuple. Returns float;
-2. `add_vectors(*vectors)` : adds all the given vectors. Takes Vector2D objects, lists and tuples in any combination. Returns Vector2D;
+2. `sum_vectors(*vectors)` : adds all the given vectors. Takes Vector2D objects, lists and tuples in any combination. Returns Vector2D;
 3. `sub_vectors(*vectors)` : subtracts all the given vectors. Takes Vector2D objects, lists and tuples in any combination. Returns Vector2D;
 4. `mult_vector(vector, multiplier)` : multiplies given vector by given number (can be int or float). "vector" takes Vector2D object, list and tuple as vector; "multiplier" takes int and float as multiplier. Returns Vector2D;
 5. `scalar_mult_vectors(vectors*)` : calculates scalar multiplication of given vectors. Takes Vector2D objects, lists and tuples in any combination. Returns float;
