@@ -1,6 +1,6 @@
 # Vectors2D
-It's a small module that adds class Vector2D and operations with vectors.
-All functions take Vector2D. Also they take tuples or lists with len == 2 of int/float.
+It's a small module that adds class Vector2D and operations with vectors in 2 dimensions.
+All functions take Vector2D. They also take tuples or lists of int or float with len == 2.
 Vectors can be added, subbed, multiplied by other vector or by int/float and more. You can find all the functions of the module below.
 
 ---
@@ -41,7 +41,7 @@ II. Getting vector's coorinates
       ```
       > Values also can be changed this way
       
-III. Getting absolute value of vector
+III. Getting magnitude (absolute value) of vector
    ```
    >>> abs(a)  # using native Python function
    Output: 1.0
@@ -131,12 +131,14 @@ IV. Operations with vectors
   - [x] Mult by vector
   - [ ] Power by number
 - [x] Vector calculations
-  - [x] Absolute value
-  - [x] Angle between vectors
-  - [x] Vector from two dots
-  - [ ] Is zero
+  - [x] Absolute value - `absolute_vector()`
+  - [x] Angle between vectors - `get_angle()`
+  - [x] Vector from two dots - `vector_from_dots()`
+  - [ ] Is zero - `vector.iszero()`
+  - [ ] Is (not) parallel - `vector.isparallel()`
+  - [ ] Is perpendicular - `vector.isperpendicular()`
 - [ ] Assignment operations
-  - [ ] +=
+  - [x] +=
   - [ ] -=
   - [ ] *=
   - [ ] **=
