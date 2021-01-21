@@ -8,7 +8,7 @@ Vectors can be added, subbed, multiplied by other vector or by int/float and mor
 ` Vector2D ` : takes tuple or list of coordinates with length 2 when creating. If not given, creates zero vector (0;0). Also can take other Vector2D object.
 
 
-## Functions:
+## Global functions:
 1. `absolute_vector(vector)` : calculates absolute value of given vector. Takes Vector2D object, list or tuple. Returns float;
 2. `add_vectors(*vectors)` : adds all the given vectors. Takes Vector2D objects, lists and tuples in any combination. Returns Vector2D;
 3. `sub_vectors(*vectors)` : subtracts all the given vectors. Takes Vector2D objects, lists and tuples in any combination. Returns Vector2D;
@@ -29,11 +29,7 @@ II. Getting vector's coorinates
       >>> a()  # get a tuple of vector's coordinates
       Output: (1, 0)  
       ```
-      > You can use `vector.vector()` for same result
-      ```
-      >>> a.vector()
-      Output: (1, 0)
-      ```
+      > You can use `vector.vector()` for the same result
       
    2. Geting exact coordinate:
       ```
