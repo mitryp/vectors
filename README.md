@@ -120,7 +120,7 @@ IV. Operations with vectors
       *Returns angle in radians*
       
 
-## TODO list:
+### TODO list:
 - [x] Vector object with 2 coordinates
 - [x] Vector operations 
   - [x] Sum
