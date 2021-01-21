@@ -39,6 +39,8 @@ II. Getting vector's coorinates
       >>> b[1]  # get "y" coordinate of vector b
       Output: 5
       ```
+      > Values also can be changed this way
+      
 III. Getting absolute value of vector
    ```
    >>> abs(a)  # using native Python function
