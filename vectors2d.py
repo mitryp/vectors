@@ -7,7 +7,7 @@ All functions take Vector2D. Also they take tuples or lists with len == 2 of int
 Vectors can be added, multiplied by other vector or by int/float and you can get angle between two vectors.
 
 Vector2D + Vector2D -> sum_vectors() -> Vector2D
-Vector2D * Vector2D -> scalar_mult_vectors() -> int/float
+Vector2D * Vector2D -> scalar_mult_vectors() -> float
 Vector2D * int/float -> mult_vector() -> Vector2D
 get_angle(Vector2D, Vector2D) -> angle in radians
 
@@ -35,7 +35,7 @@ class Vector2D:
         else:
             self.x, self.y = args[0], args[1]
 
-    # TODO: Сделать +=, -=, *= и тд
+    # TODO: Do +=, -=, *= etc
 
     def __getitem__(self, key: int):
         if key == 0:
@@ -46,6 +46,16 @@ class Vector2D:
 
         else:
             raise IndexError
+
+    def __setitem__(self, key: int, value: (int, float)):
+    	if key == 0:
+    		self.x = value
+    	
+    	elif key == 1:
+    		self.y = value
+
+    	else: 
+    		raise IndexError
 
     def __abs__(self):
         """Absolute value of vector
@@ -82,7 +92,7 @@ class Vector2D:
 
     def __mul__(self, other):
         """
-        Returns scalar multiplication of vectors or * the vector by number
+        Returns scalar multiplication of vectors or multiplies the vector by given number
 
         :param other: If Vector2D: returns scalar multiplication(int); if number: returns * (Vector)
 
@@ -113,7 +123,7 @@ class Vector2D:
 
     def vector(self):
         """
-        Returns tuple of vector's coordinates
+        Returns tuple of vector's coordinates.
 
         :return: tuple(x,y)
         """
@@ -121,6 +131,12 @@ class Vector2D:
 
 
 def absolute_vector(vector: (Vector2D, list, tuple)):
+    """
+    Calculates absolute value of given vector.
+
+    :param vectors: Vector2D or list or tuple
+    :return: float
+    """
     if type(vector) is not Vector2D:
         vector = Vector2D(vector)
 
@@ -129,17 +145,15 @@ def absolute_vector(vector: (Vector2D, list, tuple)):
 
 def sum_vectors(*vectors: (Vector2D, list, tuple)):
     """
-    Returns vector sum of given vectors. Values with len != 2 will be skipped
+    Adds given vectors.
 
-    :param vectors: must be Vector2D or list or tuple
+    :param vectors: Vector2D or list or tuple
     :return: Vector2D
     """
     result = [0, 0]
     for vector in vectors:
         if type(vector) is not Vector2D:
             vector = Vector2D(vector)
-
-        # x, y = vector.coords()
 
         result[0] += vector[0]
         result[1] += vector[1]
@@ -149,7 +163,7 @@ def sum_vectors(*vectors: (Vector2D, list, tuple)):
 
 def sub_vectors(*vectors: (Vector2D, list, tuple)):
     """
-    Returns vector sub of given vectors. Values with len != 2 will be skipped
+    Subtracts given vectors.
 
     :param vectors: Vector2D or list or tuple
     :return: Vector2D
@@ -167,42 +181,39 @@ def sub_vectors(*vectors: (Vector2D, list, tuple)):
             result[0] -= vector[0]
             result[1] -= vector[1]
 
-    return result
+    return Vector2D(result)
 
 
 def mult_vector(vector: (Vector2D, tuple, list), modifier: (int, float)):
     """
-    Returns multiplication of given vector by modifier
-    :param vector: must be Vector or tuple or list
+    Multiplies given vector by given number.
+
+    :param vector: Vector2D or tuple or list
     :param modifier: must be number
     :return: Vector2D
     """
     if type(vector) is not Vector2D:
         vector = Vector2D(vector)
 
-    # x, y = vector.coords()
-
     return Vector2D((vector[0] * modifier, vector[1] * modifier))
 
 
 def scalar_mult_vectors(*vectors: (Vector2D, list, tuple)):
     """
-    Returns scalar mod of given vectors
+    Calculates scalar multiplication of given vectors.
 
     :param vectors: Vector2D or list or tuple
-    :return: int or float
+    :return: float
     """
     temp = [1, 1]
     for vector in vectors:
         if type(vector) is not Vector2D:
             vector = Vector2D(vector)
 
-        x, y = vector.coords()
+        temp[0] *= vector[0]
+        temp[1] *= vector[1]
 
-        temp[0] *= x
-        temp[1] *= y
-
-    result = 0
+    result = 0.0
     for coordinate in temp:
         result += coordinate
 
@@ -211,11 +222,11 @@ def scalar_mult_vectors(*vectors: (Vector2D, list, tuple)):
 
 def get_angle(vector1: (Vector2D, list, tuple), vector2: (Vector2D, list, tuple)):
     """
-    Returns angle between two given vectors in radians
+    Returns angle between two given vectors in radians.
 
     :param vector1: Vector2D or list or tuple
     :param vector2: Vector2D or list or tuple
-    :return: Angle between given vectors in radians
+    :return: float
     """
     if type(vector1) is not Vector2D:
         vector1 = Vector2D(vector1)
@@ -230,7 +241,7 @@ def get_angle(vector1: (Vector2D, list, tuple), vector2: (Vector2D, list, tuple)
 
 def vector_from_dots(dot1: (tuple, list), dot2: (tuple, list)):
     """
-    Returns vector from two given dots
+    Creates vector from two given dots
 
     :param dot1: tuple or list
     :param dot2: tuple or list
