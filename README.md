@@ -5,7 +5,7 @@ Vectors can be added, subbed, multiplied by other vector or by int/float and mor
 
 ---
 ## Class:
-` Vector2D ` : takes tuple or list of coordinates with length 2 when creating. If not given, creates zero vector (0;0). Also can take other Vector2D object.
+` Vector2D ` : takes ints, floats, tuple, list when creating. If not given, creates zero vector (0;0). If given only one number, assigns it to "x" coordinate. Also can take other Vector2D object.
 
 
 ## Global functions:
@@ -20,8 +20,10 @@ Vectors can be added, subbed, multiplied by other vector or by int/float and mor
 ## Examples:
 I. Creating vectors
    ```
-   >>> a = Vector2D((1,0))  # unit vector a(1;0)
-   >>> b = Vector2D((3,5))  # vector b(3;5)
+   >>> a = Vector2D(1)  # unit vector a(1;0)
+   >>> b = Vector2D(3,5)  # vector b(3;5)
+   >>> c = Vector2D(list)  # vector from list or tuple (must have length 2)
+   >>> d = Vector2D(a)  # creates vector with the same coordinates as vector a has.
    ```
 II. Getting vector's coorinates
    1. As a tuple:
