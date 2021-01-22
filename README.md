@@ -1,5 +1,5 @@
 # Vectors2D
-It's a small module that adds class Vector2D and operations with vectors in 2 dimensions.
+It's a small module called to facilitate work with vectors in Python. Adds class Vector2D and operations with vectors in 2 dimensions.
 All functions take Vector2D. They also take tuples or lists of int or float with len == 2.
 Vectors can be added, subbed, multiplied by other vector or by int/float and more. You can find all the functions of the module below.
 
@@ -18,14 +18,14 @@ Vectors can be added, subbed, multiplied by other vector or by int/float and mor
 7. `vector_from_dots(dot1, dot2)` : calculates vector from two given dots. Returns Vector2D.
 
 ## Examples:
-I. Creating vectors
+1. Creating vectors
    ```
    >>> a = Vector2D(1)  # unit vector a(1;0)
    >>> b = Vector2D(3,5)  # vector b(3;5)
    >>> c = Vector2D(list)  # vector from list or tuple (must have length 2)
    >>> d = Vector2D(a)  # creates vector with the same coordinates as vector a has.
    ```
-II. Getting vector's coorinates
+2. Getting vector's coorinates
    1. As a tuple:
       ```
       >>> a()  # get a tuple of vector's coordinates
@@ -43,7 +43,7 @@ II. Getting vector's coorinates
       ```
       > Values also can be changed this way
       
-III. Getting magnitude (absolute value) of vector
+3. Getting magnitude (absolute value) of vector
    ```
    >>> abs(a)  # using native Python function
    Output: 1.0
@@ -57,7 +57,7 @@ III. Getting magnitude (absolute value) of vector
    >>> absolute_vector(b)
    Output: 5.830951894845301
    ```
-IV. Operations with vectors
+4. Operations with vectors
    1. Addition
       ```
       >>> c = a + b  # using mathematical operator  # returns Vector2D
@@ -103,7 +103,7 @@ IV. Operations with vectors
       Output:
          TypeError: unsupported operand type(s) for *: 'float' and 'Vector2D'
       ```
-      You can use `scalar_mult_vectors(a, b, c)` instead.
+      You should use `scalar_mult_vectors(a, b, c)` instead.
       
       2. By number:
       ```
@@ -128,13 +128,12 @@ IV. Operations with vectors
       
 
 ### TODO list:
-- [x] Vector object with 2 coordinates
+- [x] Two-dimensional vector class
 - [x] Vector operations 
   - [x] Sum
   - [x] Sub
   - [x] Mult by number
   - [x] Scalar multilpication with vector
-  - [ ] Vector multilpication with vector
   - [ ] Power by number
 - [x] Vector calculations
   - [x] Absolute value - `absolute_vector()`
@@ -146,8 +145,8 @@ IV. Operations with vectors
 - [x] Assignment operations
   - [x] +=
   - [x] -=
-  - [x] *=
+  - [x] \*= (only for numbers)
   - [ ] **=
-  - [ ] /= (for numbers only)
+  - [ ] /= (only for numbers)
 - [ ] Other
   - [ ] Negative vector
