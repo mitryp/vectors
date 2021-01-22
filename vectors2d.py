@@ -1,6 +1,5 @@
 # encoding: utf-8
 # module vectors2d
-# from
 """Small module that adds class Vector2D and operations with vectors.
 
 All functions take Vector2D. Also they take tuples or lists of int/float with len == 2.
@@ -170,7 +169,7 @@ class Vector2D:
             vector = Vector2D(vector)
 
         if self.iszero() or vector.iszero():
-            return False
+            return True
 
         if get_angle(self, vector) == pi/2:
             return True
