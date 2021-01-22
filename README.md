@@ -6,6 +6,11 @@ Vectors can be added, subbed, multiplied by other vector or by int/float and mor
 ---
 ## Class:
 ` Vector2D ` : takes ints, floats, tuple, list when creating. If not given, creates zero vector (0;0). If given only one number, assigns it to "x" coordinate. Also can take other Vector2D object.
+### Class methods:
+1. `iszero()` : check if vector is zero vector.
+2. `isparallel(vector)` : check if the vector is parallel to the given vector. Takes Vector2D, list ot tuple.
+3. `isperpendicular(vector)` : check if the vector is perpendicular to the given vector. Takes Vector2D, list ot tuple.
+4. `iscodirected(vector)` : check if vector is co-directed to given vector. Takes Vector2D, list ot tuple.
 
 
 ## Global functions:
@@ -18,18 +23,18 @@ Vectors can be added, subbed, multiplied by other vector or by int/float and mor
 7. `vector_from_dots(dot1, dot2)` : calculates vector from two given dots. Returns Vector2D.
 
 ## Examples:
-1. Creating vectors
+1. **Creating vectors**
    ```
    >>> a = Vector2D(1)  # unit vector a(1;0)
-   >>> b = Vector2D(3,5)  # vector b(3;5)
+   >>> b = Vector2D(3, 5)  # vector b(3;5)
    >>> c = Vector2D(list)  # vector from list or tuple (must have length 2)
    >>> d = Vector2D(a)  # creates vector with the same coordinates as vector a has.
    ```
-2. Getting vector's coorinates
-   1. As a tuple:
+2. **Getting vector's coorinates**
+   1. As a list:
       ```
-      >>> a()  # get a tuple of vector's coordinates
-      Output: (1, 0)  
+      >>> a()  # get list of vector's coordinates
+      Output: [1, 0]  
       ```
       > You can use `vector.vector` for the same result
       
@@ -43,7 +48,15 @@ Vectors can be added, subbed, multiplied by other vector or by int/float and mor
       ```
       > Values also can be changed this way
       
-3. Getting magnitude (absolute value) of vector
+   3. Getting negative vector:
+      ```
+      >>> a = Vector2D(3, 2)
+      >>> b = -a
+      >>> b()
+      Output: [-3, -2]
+      ```
+      
+3. **Getting magnitude (absolute value) of vector**
    ```
    >>> abs(a)  # using native Python function
    Output: 1.0
@@ -57,32 +70,37 @@ Vectors can be added, subbed, multiplied by other vector or by int/float and mor
    >>> absolute_vector(b)
    Output: 5.830951894845301
    ```
-4. Operations with vectors
+4. **Operations with vectors**
    1. Addition
       ```
       >>> c = a + b  # using mathematical operator  # returns Vector2D
       >>> c()
-      Output: (4, 5)
+      Output: [4, 5]
       ```
       > Inner function for addition is `sum_vectors(*vectors)`:
       ```
       >>> c = sum_vectors(a, b)  # using function of the module  # returns Vector2D
       >>> c()
-      Output: (4, 5)
+      Output: [4, 5]
       ```
-      > You can use `+=` with other vector to change vector directly
+      > You can use `+=` with other vector to change vector directly:
+      ```
+      >>> a += b  # adding b to a and assigning result to a
+      >>> a()
+      Output: [4, 5]
+      ```
       
    2. Subtraction
       ```
       >>> c = b - a  # using mathematical operator  # returns Vector2D
       >>> c()
-      Output: (2, 5)
+      Output: [2, 5]
       ```
       > Inner function for substraction is `sub_vectors(*vectors)`:
       ```
       >>> c = sub_vectors(b, a)  # using function of the module  # returns Vector2D
       >>> c()
-      Output: (2, 5)
+      Output: [2, 5]
       ```
       > You can use `-=` with other vector to change vector directly
       
@@ -97,25 +115,25 @@ Vectors can be added, subbed, multiplied by other vector or by int/float and mor
       >>> scalar_mult_vectors(a, b)  # using function of the module
       Output: 3.0
       ```
-      **Note that while you using mathematical operators to multiply vectors you CAN'T use it more than once in a row:**
+      **Note that while you using mathematical operators to multiply vectors you CAN'T use it more than once in a row, because you cant myltyply float by Vector2D:**
       ```
       >>> a * b * c
       Output:
          TypeError: unsupported operand type(s) for *: 'float' and 'Vector2D'
       ```
-      You should use `scalar_mult_vectors(a, b, c)` instead.
+      > Code `a * (b * c)` will multiply vector a by cross product of vectors b and c. If you need to get cross product of more than two vectors at once, you should use       `scalar_mult_vectors(a, b, c)` instead.
       
       2. By number:
       ```
       >>> c = b * 2  # using mathematical operator  # returns Vector2D
       >>> c()
-      Output: (6, 10)
+      Output: [6, 10]
       ```
       > Inner function for multiplication by number is `mult_vector(vector, modifier)`:
       ```
       >>> c = mult_vector(b, 3)  # returns Vector2D
       >>> c()
-      Output: (9, 15)
+      Output: [9, 15]
       ```
       > You can use `*=` *only* with other vector to change vector directly
       
@@ -125,6 +143,41 @@ Vectors can be added, subbed, multiplied by other vector or by int/float and mor
       Output: 1.0303768265243125
       ```
       *Returns angle in radians*
+      
+5. **Boolean operations**
+   1. Check if vector is zero vector:
+      ```
+      >>> a = Vector2D(0, 0)
+      >>> a.iszero()
+      Output: True
+      
+      >>> b = Vector2D(1, 2)
+      >>> b.iszero()
+      Output: False
+      ```
+      
+   2. Check if vector is parallel with other vector:
+      ```
+      >>> a = Vector2D(1, 0)
+      >>> b = Vector2D(-3, 0)
+      >>> a.isparallel(b)  # takes Vector2D, list or tuple
+      Output: True
+      
+      >>> c = Vector2D(3, 7)
+      >>> c.isparallel(b)
+      Output: False
+      ```
+   3. Check if vector is perpendicular with other vector:
+      ```
+      >>> a = Vector2D(3, 0)
+      >>> b = Vector2D(0, 4)
+      a.isperpendicular(b)
+      Output: True
+      
+      >>> c = Vector2D(1, 5)
+      >>> c.isperpendicular(b)
+      Output: False
+      ```
       
 
 ### TODO list:
@@ -139,14 +192,15 @@ Vectors can be added, subbed, multiplied by other vector or by int/float and mor
   - [x] Absolute value - `absolute_vector()`
   - [x] Angle between vectors - `get_angle()`
   - [x] Vector from two dots - `vector_from_dots()`
-  - [ ] Is zero - `vector.iszero()`
-  - [ ] Is (not) parallel - `vector.isparallel()`
-  - [ ] Is perpendicular - `vector.isperpendicular()`
+  - [x] Is zero - `vector.iszero()`
+  - [x] Is (not) parallel - `vector.isparallel()`
+  - [x] Is perpendicular - `vector.isperpendicular()`
+  - [x] Is co-directed - `vector.iscodirected()`
 - [x] Assignment operations
   - [x] +=
   - [x] -=
   - [x] \*= (only for numbers)
-  - [ ] **=
+  - [ ] \**=
   - [ ] /= (only for numbers)
-- [ ] Other
-  - [ ] Negative vector
+- [x] Other
+  - [x] Negative vector
