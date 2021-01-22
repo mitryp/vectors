@@ -7,9 +7,10 @@ Vectors can be added, subbed, multiplied by other vector or by int/float and mor
 ## Class:
 ` Vector2D ` : takes ints, floats, tuple, list when creating. If not given, creates zero vector (0;0). If given only one number, assigns it to "x" coordinate. Also can take other Vector2D object.
 ### Class methods:
-1. `iszero()` :
-2. `isparallel(vector)` :
-3. `isperpendicular(vector)` :
+1. `iszero()` : check if vector is zero vector.
+2. `isparallel(vector)` : check if the vector is parallel to the given vector. Takes Vector2D, list ot tuple.
+3. `isperpendicular(vector)` : check if the vector is perpendicular to the given vector. Takes Vector2D, list ot tuple.
+4. `iscodirected(vector)` : check if vector is co-directed to given vector. Takes Vector2D, list ot tuple.
 
 
 ## Global functions:
@@ -194,6 +195,7 @@ Vectors can be added, subbed, multiplied by other vector or by int/float and mor
   - [x] Is zero - `vector.iszero()`
   - [x] Is (not) parallel - `vector.isparallel()`
   - [x] Is perpendicular - `vector.isperpendicular()`
+  - [x] Is co-directed - `vector.iscodirected()`
 - [x] Assignment operations
   - [x] +=
   - [x] -=
