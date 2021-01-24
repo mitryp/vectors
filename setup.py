@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setuptools.setup(
   name = 'vectors2d',
   packages = setuptools.find_packages(),
-  version = '0.93',
+  version = '0.95',
   license='MIT',
   description = 'Small but useful module that allows the work with vectors in 2-dimensional space.',
   long_description=long_description,
@@ -15,7 +15,7 @@ setuptools.setup(
   author = 'Dmitry Popov',
   author_email = 'thedmitryp@ukr.net',
   url = 'https://github.com/MitryP/vectors',
-  download_url = 'https://github.com/MitryP/vectors/archive/0.93.tar.gz',
+  download_url = 'https://github.com/MitryP/vectors/archive/0.95.tar.gz',
   keywords = ['vectors', '2-dimensional', 'flat', 'coordinates', 'open-source'],
   install_requires=[],
   classifiers=[
