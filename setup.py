@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'vectors2d',
   packages = ['vectors2d'],
-  version = 'beta',
+  version = '0.9',
   license='MIT',
   description = 'Small but useful module that allows the work with vectors in 2-dimensional space',
   author = 'Dmitry Popov',
