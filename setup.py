@@ -1,15 +1,21 @@
+import setuptools
 from distutils.core import setup
-setup(
+
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
+setuptools.setup(
   name = 'vectors2d',
-  packages = ['vectors2d'],
-  version = '0.92',
+  packages = setuptools.find_packages(),
+  version = '0.93',
   license='MIT',
   description = 'Small but useful module that allows the work with vectors in 2-dimensional space.',
+  long_description=long_description,
   long_description_content_type="text/markdown",
   author = 'Dmitry Popov',
   author_email = 'thedmitryp@ukr.net',
   url = 'https://github.com/MitryP/vectors',
-  download_url = 'https://github.com/MitryP/vectors/archive/0.92.tar.gz',
+  download_url = 'https://github.com/MitryP/vectors/archive/0.93.tar.gz',
   keywords = ['vectors', '2-dimensional', 'flat', 'coordinates', 'open-source'],
   install_requires=[],
   classifiers=[
