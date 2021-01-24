@@ -1,5 +1,6 @@
 # encoding: utf-8
 # module vectors2d
+# from
 """Small module that adds class Vector2D and operations with vectors.
 
 All functions take Vector2D. Also they take tuples or lists of int/float with len == 2.
