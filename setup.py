@@ -2,15 +2,14 @@ from distutils.core import setup
 setup(
   name = 'vectors2d',
   packages = ['vectors2d'],
-  version = '0.91',
+  version = '0.92',
   license='MIT',
   description = 'Small but useful module that allows the work with vectors in 2-dimensional space.',
-  long_description=long_description,
   long_description_content_type="text/markdown",
   author = 'Dmitry Popov',
   author_email = 'thedmitryp@ukr.net',
   url = 'https://github.com/MitryP/vectors',
-  download_url = 'https://github.com/MitryP/vectors/archive/0.91.tar.gz',
+  download_url = 'https://github.com/MitryP/vectors/archive/0.92.tar.gz',
   keywords = ['vectors', '2-dimensional', 'flat', 'coordinates', 'open-source'],
   install_requires=[],
   classifiers=[
