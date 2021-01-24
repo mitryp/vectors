@@ -4,6 +4,10 @@ All functions take Vector2D. They also take tuples or lists of int or float with
 Vectors can be added, subbed, multiplied by other vector or by int/float and more. You can find all the functions of the module below.
 
 ---
+## Installing
+Simply run `pip install vectors2d` from your command line.
+
+
 ## Class:
 ` Vector2D ` : takes ints, floats, tuple, list when creating. If not given, creates zero vector (0;0). If given only one number, assigns it to "x" coordinate. Also can take other Vector2D object.
 ### Class methods:
