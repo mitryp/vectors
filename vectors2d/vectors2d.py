@@ -1,6 +1,6 @@
 # encoding: utf-8
 # module vectors2d
-# from
+
 """Small module that adds class Vector2D and operations with vectors.
 
 All functions take Vector2D. Also they take tuples or lists of int/float with len == 2.
@@ -17,10 +17,11 @@ get_angle(Vector2D, Vector2D) -> angle in radians
 Extended version of documentation can be found on GitHub: https://github.com/MitryP/vectors/
 """
 from math import sqrt, acos, pi
+from typing import Union
 
 
 class Vector2D:
-    def __init__(self, *args: (int, float, tuple, list, object)):
+    def __init__(self, *args: Union[int, float, tuple, list, 'Vector2D']):
         """Create vector
 
         Takes tuple or list of int/float with length == 2
@@ -59,7 +60,7 @@ class Vector2D:
         else:
             return self.vector[key]
 
-    def __setitem__(self, key: int, value: (int, float)):
+    def __setitem__(self, key: int, value: Union[int, float]):
         if key > len(self.vector)-1 or key < -1:
             raise IndexError
 
@@ -87,21 +88,21 @@ class Vector2D:
         else:
             return self == other
 
-    def __add__(self, other: (list, tuple, object)):
+    def __add__(self, other: Union[list, tuple, 'Vector2D']):
         if type(other) in (type(self), tuple, list):
             return sum_vectors(self, other)
 
         else:
             raise TypeError
 
-    def __sub__(self, other: (list, tuple, object)):
+    def __sub__(self, other: Union[list, tuple, 'Vector2D']):
         if type(other) in (type(self), tuple, list):
             return sub_vectors(self, other)
 
         else:
             raise TypeError
 
-    def __mul__(self, other: (int, float, list, tuple, object)):
+    def __mul__(self, other: Union[int, float, list, tuple, 'Vector2D']):
         """
         Returns scalar multiplication of vectors or multiplies the vector by given number
 
@@ -118,7 +119,7 @@ class Vector2D:
         else:
             raise TypeError
 
-    def __imul__(self, other: (int, float)):
+    def __imul__(self, other: Union[int, float]):
         return mult_vector(self.vector, other)
 
     def __call__(self):
@@ -127,7 +128,7 @@ class Vector2D:
 
         """
 
-        return self.vector
+        return tuple(self.vector)
 
     def __neg__(self):
         """
@@ -151,13 +152,9 @@ class Vector2D:
 
         """
 
-        if self.vector[0] == 0 and self.vector[1] == 0:
-            return True
+        return self.vector[0] == 0 and self.vector[1] == 0
 
-        else:
-            return False
-
-    def isperpendicular(self, vector: (tuple, list, object)):
+    def isperpendicular(self, vector: Union[tuple, list, 'Vector2D']):
         """
         Check if vector is perpendicular to the given vector.
 
@@ -170,7 +167,7 @@ class Vector2D:
             vector = Vector2D(vector)
 
         if self.iszero() or vector.iszero():
-            return True
+            return False
 
         if get_angle(self, vector) == pi/2:
             return True
@@ -178,7 +175,7 @@ class Vector2D:
         else:
             return False
 
-    def isparallel(self, vector: (tuple, list, object)):
+    def isparallel(self, vector: Union[tuple, list, 'Vector2D']):
         """
         Check if vector is co-directional to the given vector.
 
@@ -191,7 +188,7 @@ class Vector2D:
             vector = Vector2D(vector)
 
         if self.iszero() or vector.iszero():
-            return True
+            return False
 
         elif get_angle(self, vector) in [0, pi]:
             return True
@@ -199,7 +196,7 @@ class Vector2D:
         else:
             return False
 
-    def iscodirected(self, vector: (tuple, list, object)):
+    def iscodirected(self, vector: Union[tuple, list, 'Vector2D']):
         """
         Check if vector is co-directed to given vector.
 
@@ -212,7 +209,7 @@ class Vector2D:
             vector = Vector2D(vector)
 
         if self.iszero() or vector.iszero():
-            return True
+            return False
 
         elif get_angle(self, vector) == 0:
             return True
@@ -220,8 +217,11 @@ class Vector2D:
         else:
             return False
 
+    def __repr__(self) -> str:
+        pass
 
-def absolute_vector(vector: (Vector2D, list, tuple)):
+
+def absolute_vector(vector: Union[Vector2D, list, tuple]):
     """
     Calculates absolute value of given vector.
 
@@ -236,7 +236,7 @@ def absolute_vector(vector: (Vector2D, list, tuple)):
     return sqrt(vector[0] ** 2 + vector[1] ** 2)
 
 
-def sum_vectors(*vectors: (Vector2D, list, tuple)):
+def sum_vectors(*vectors: Union[Vector2D, list, tuple]):
     """
     Adds given vectors.
 
@@ -256,7 +256,7 @@ def sum_vectors(*vectors: (Vector2D, list, tuple)):
     return Vector2D(result)
 
 
-def sub_vectors(*vectors: (Vector2D, list, tuple)):
+def sub_vectors(*vectors: Union[Vector2D, list, tuple]):
     """
     Subtracts given vectors.
 
@@ -280,7 +280,7 @@ def sub_vectors(*vectors: (Vector2D, list, tuple)):
     return Vector2D(result)
 
 
-def mult_vector(vector: (Vector2D, tuple, list), modifier: (int, float)):
+def mult_vector(vector: Union[Vector2D, tuple, list], modifier: Union[int, float]):
     """
     Multiplies given vector by given number.
 
@@ -296,7 +296,7 @@ def mult_vector(vector: (Vector2D, tuple, list), modifier: (int, float)):
     return Vector2D((vector[0] * modifier, vector[1] * modifier))
 
 
-def scalar_mult_vectors(*vectors: (Vector2D, list, tuple)):
+def scalar_mult_vectors(*vectors: Union[Vector2D, list, tuple]):
     """
     Calculates scalar multiplication of given vectors.
 
@@ -320,7 +320,7 @@ def scalar_mult_vectors(*vectors: (Vector2D, list, tuple)):
     return result
 
 
-def get_angle(vector1: (Vector2D, list, tuple), vector2: (Vector2D, list, tuple)):
+def get_angle(vector1: Union[Vector2D, list, tuple], vector2: Union[Vector2D, list, tuple]):
     """
     Returns angle between two given vectors in radians.
 
@@ -343,10 +343,10 @@ def get_angle(vector1: (Vector2D, list, tuple), vector2: (Vector2D, list, tuple)
     except ZeroDivisionError:
         result = 1
 
-    return acos(result)
+    return round(acos(result), 5)
 
 
-def vector_from_dots(dot1: (tuple, list), dot2: (tuple, list)):
+def vector_from_dots(dot1: Union[tuple, list], dot2: Union[tuple, list]):
     """
     Creates vector from two given dots
 
