@@ -144,7 +144,7 @@ class Vector2D:
 
         return Vector2D(result_vector)
 
-    def iszero(self):
+    def is_zero(self):
         """
         Check if the vector is zero vector.
 
@@ -154,7 +154,7 @@ class Vector2D:
 
         return self.vector[0] == 0 and self.vector[1] == 0
 
-    def isperpendicular(self, vector: Union[tuple, list, 'Vector2D']):
+    def is_perpendicular_to(self, vector: Union[tuple, list, 'Vector2D']):
         """
         Check if vector is perpendicular to the given vector.
 
@@ -166,7 +166,7 @@ class Vector2D:
         if type(vector) is not type(self):
             vector = Vector2D(vector)
 
-        if self.iszero() or vector.iszero():
+        if self.is_zero() or vector.is_zero():
             return False
 
         if get_angle(self, vector) == pi/2:
@@ -175,7 +175,7 @@ class Vector2D:
         else:
             return False
 
-    def isparallel(self, vector: Union[tuple, list, 'Vector2D']):
+    def is_parallel_to(self, vector: Union[tuple, list, 'Vector2D']):
         """
         Check if vector is co-directional to the given vector.
 
@@ -187,7 +187,7 @@ class Vector2D:
         if type(vector) is not type(self):
             vector = Vector2D(vector)
 
-        if self.iszero() or vector.iszero():
+        if self.is_zero() or vector.is_zero():
             return False
 
         elif get_angle(self, vector) in [0, pi]:
@@ -196,7 +196,7 @@ class Vector2D:
         else:
             return False
 
-    def iscodirected(self, vector: Union[tuple, list, 'Vector2D']):
+    def is_codirectional_to(self, vector: Union[tuple, list, 'Vector2D']):
         """
         Check if vector is co-directed to given vector.
 
@@ -208,7 +208,7 @@ class Vector2D:
         if type(vector) is not type(self):
             vector = Vector2D(vector)
 
-        if self.iszero() or vector.iszero():
+        if self.is_zero() or vector.is_zero():
             return False
 
         elif get_angle(self, vector) == 0:
@@ -330,16 +330,17 @@ def get_angle(vector1: Union[Vector2D, list, tuple], vector2: Union[Vector2D, li
 
     """
 
-    # TODO: find how to calc angle with zero vectors
-
     if type(vector1) is not Vector2D:
         vector1 = Vector2D(vector1)
 
     if type(vector2) is not Vector2D:
         vector2 = Vector2D(vector2)
+
+    if vector1.is_zero() or vector2.is_zero():
+        return 0.0
+
     try:
         result = scalar_mult_vectors(vector1(), vector2()) / (abs(vector1) * abs(vector2))  # cos of angle
-
     except ZeroDivisionError:
         result = 1
 
@@ -360,8 +361,6 @@ def vector_from_dots(dot1: Union[tuple, list], dot2: Union[tuple, list]):
         raise TypeError
 
     else:
-        vector = [0, 0]
-        vector[0] = dot2[0] - dot1[0]
-        vector[1] = dot2[1] - dot1[1]
+        vector = [dot2[0] - dot1[0], dot2[1] - dot1[1]]
 
         return Vector2D(vector)
