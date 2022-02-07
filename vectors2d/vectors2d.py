@@ -26,7 +26,6 @@ class Vector2D:
 
         Takes tuple or list of int/float with length == 2
         :param args: list or tuple with len == 2 of int/float default = [0,0]
-
         """
 
         if len(args) == 0:
@@ -53,32 +52,31 @@ class Vector2D:
             else:
                 raise TypeError
 
-    def __getitem__(self, key: int):
+    def __getitem__(self, key: int) -> Union[float, int]:
         if key > len(self.vector) - 1 or key < -1:
             raise IndexError
 
         else:
             return self.vector[key]
 
-    def __setitem__(self, key: int, value: Union[int, float]):
+    def __setitem__(self, key: int, value: Union[int, float]) -> None:
         if key > len(self.vector)-1 or key < -1:
             raise IndexError
 
         else:
             self.vector[key] = value
 
-    def __abs__(self):
+    def __abs__(self) -> float:
         """Absolute value of vector
 
         Returns absolute value of vector
 
         :return: float
-
         """
 
         return absolute_vector(self)
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         if type(other) in (type(self), tuple, list):
             return self.vector == Vector2D(other).vector
 
@@ -88,26 +86,26 @@ class Vector2D:
         else:
             return self == other
 
-    def __add__(self, other: Union[list, tuple, 'Vector2D']):
+    def __add__(self, other: Union[list, tuple, 'Vector2D']) -> 'Vector2D':
         if type(other) in (type(self), tuple, list):
             return sum_vectors(self, other)
 
         else:
-            raise TypeError
+            raise TypeError(f"Unsupported type '{other.__class__.__name__}' for addition operation.")
 
-    def __sub__(self, other: Union[list, tuple, 'Vector2D']):
+    def __sub__(self, other: Union[list, tuple, 'Vector2D']) -> 'Vector2D':
         if type(other) in (type(self), tuple, list):
             return sub_vectors(self, other)
 
         else:
-            raise TypeError
+            raise TypeError(f"Unsupported type '{other.__class__.__name__}' for subtraction operation.")
 
-    def __mul__(self, other: Union[int, float, list, tuple, 'Vector2D']):
+    def __mul__(self, other: Union[int, float, list, tuple, 'Vector2D']) -> Union['Vector2D', float]:
         """
         Returns scalar multiplication of vectors or multiplies the vector by given number
 
-        :param other: If Vector2D: returns scalar multiplication(int); if number: returns * (Vector)
-
+        :param other: If Vector2D: returns scalar multiplication(float); if number: returns * (Vector)
+        :returns: If scalar_mult_vectors multiplication, returns float; If vector multiplication, returns Vector2D
         """
 
         if type(other) in (int, float):
@@ -117,25 +115,23 @@ class Vector2D:
             return scalar_mult_vectors(self, other)
 
         else:
-            raise TypeError
+            raise TypeError(f"Unsupported type '{other.__class__.__name__}' for multiplication operation.")
 
-    def __imul__(self, other: Union[int, float]):
+    def __imul__(self, other: Union[int, float]) -> 'Vector2D':
         return mult_vector(self.vector, other)
 
-    def __call__(self):
+    def __call__(self) -> tuple:
         """
         :return: tuple(x, y)
-
         """
 
         return tuple(self.vector)
 
-    def __neg__(self):
+    def __neg__(self) -> 'Vector2D':
         """
         Returns vector with negative coordinates of self.
 
         :return: Vector2D
-
         """
 
         result_vector = self.vector.copy()
@@ -144,23 +140,21 @@ class Vector2D:
 
         return Vector2D(result_vector)
 
-    def is_zero(self):
+    def is_zero(self) -> bool:
         """
         Check if the vector is zero vector.
 
         :return: bool
-
         """
 
         return self.vector[0] == 0 and self.vector[1] == 0
 
-    def is_perpendicular_to(self, vector: Union[tuple, list, 'Vector2D']):
+    def is_perpendicular_to(self, vector: Union[tuple, list, 'Vector2D']) -> bool:
         """
         Check if vector is perpendicular to the given vector.
 
         :param vector: Vector2D or list or tuple
         :return: bool
-
         """
 
         if type(vector) is not type(self):
@@ -175,13 +169,12 @@ class Vector2D:
         else:
             return False
 
-    def is_parallel_to(self, vector: Union[tuple, list, 'Vector2D']):
+    def is_parallel_to(self, vector: Union[tuple, list, 'Vector2D']) -> bool:
         """
         Check if vector is co-directional to the given vector.
 
         :param vector: Vector2D or list or tuple
         :return: bool
-
         """
 
         if type(vector) is not type(self):
@@ -196,13 +189,12 @@ class Vector2D:
         else:
             return False
 
-    def is_codirectional_to(self, vector: Union[tuple, list, 'Vector2D']):
+    def is_codirectional_to(self, vector: Union[tuple, list, 'Vector2D']) -> bool:
         """
         Check if vector is co-directed to given vector.
 
         :param vector: Vector2D or list or tuple
         :return: bool
-
         """
 
         if type(vector) is not type(self):
@@ -218,16 +210,15 @@ class Vector2D:
             return False
 
     def __repr__(self) -> str:
-        pass
+        return f"<Vector2D {self.vector}>"
 
 
-def absolute_vector(vector: Union[Vector2D, list, tuple]):
+def absolute_vector(vector: Union[Vector2D, list, tuple]) -> float:
     """
-    Calculates absolute value of given vector.
+    Calculates an absolute value of given vector.
 
     :param vector: Vector2D or list or tuple
     :return: float
-
     """
 
     if type(vector) is not Vector2D:
@@ -236,13 +227,12 @@ def absolute_vector(vector: Union[Vector2D, list, tuple]):
     return sqrt(vector[0] ** 2 + vector[1] ** 2)
 
 
-def sum_vectors(*vectors: Union[Vector2D, list, tuple]):
+def sum_vectors(*vectors: Union[Vector2D, list, tuple]) -> Vector2D:
     """
     Adds given vectors.
 
     :param vectors: Vector2D or list or tuple
     :return: Vector2D
-
     """
 
     result = [0, 0]
@@ -256,13 +246,12 @@ def sum_vectors(*vectors: Union[Vector2D, list, tuple]):
     return Vector2D(result)
 
 
-def sub_vectors(*vectors: Union[Vector2D, list, tuple]):
+def sub_vectors(*vectors: Union[Vector2D, list, tuple]) -> Vector2D:
     """
     Subtracts given vectors.
 
     :param vectors: Vector2D or list or tuple
     :return: Vector2D
-
     """
 
     result = None
@@ -280,14 +269,13 @@ def sub_vectors(*vectors: Union[Vector2D, list, tuple]):
     return Vector2D(result)
 
 
-def mult_vector(vector: Union[Vector2D, tuple, list], modifier: Union[int, float]):
+def mult_vector(vector: Union[Vector2D, tuple, list], modifier: Union[int, float]) -> Vector2D:
     """
-    Multiplies given vector by given number.
+    Multiplies the given vector by the given number.
 
     :param vector: Vector2D or tuple or list
     :param modifier: must be number
     :return: Vector2D
-
     """
 
     if type(vector) is not Vector2D:
@@ -296,13 +284,12 @@ def mult_vector(vector: Union[Vector2D, tuple, list], modifier: Union[int, float
     return Vector2D((vector[0] * modifier, vector[1] * modifier))
 
 
-def scalar_mult_vectors(*vectors: Union[Vector2D, list, tuple]):
+def scalar_mult_vectors(*vectors: Union[Vector2D, list, tuple]) -> float:
     """
-    Calculates scalar multiplication of given vectors.
+    Calculates a scalar multiplication of the given vectors.
 
     :param vectors: Vector2D or list or tuple
     :return: float
-
     """
 
     temp = [1, 1]
@@ -320,14 +307,13 @@ def scalar_mult_vectors(*vectors: Union[Vector2D, list, tuple]):
     return result
 
 
-def get_angle(vector1: Union[Vector2D, list, tuple], vector2: Union[Vector2D, list, tuple]):
+def get_angle(vector1: Union[Vector2D, list, tuple], vector2: Union[Vector2D, list, tuple]) -> float:
     """
-    Returns angle between two given vectors in radians.
+    Returns an angle between the two given vectors in radians.
 
     :param vector1: Vector2D or list or tuple
     :param vector2: Vector2D or list or tuple
     :return: float
-
     """
 
     if type(vector1) is not Vector2D:
@@ -347,14 +333,13 @@ def get_angle(vector1: Union[Vector2D, list, tuple], vector2: Union[Vector2D, li
     return round(acos(result), 5)
 
 
-def vector_from_dots(dot1: Union[tuple, list], dot2: Union[tuple, list]):
+def vector_from_dots(dot1: Union[tuple, list], dot2: Union[tuple, list]) -> Vector2D:
     """
-    Creates vector from two given dots
+    Creates a vector from the two given dots
 
     :param dot1: tuple or list
     :param dot2: tuple or list
     :return: Vector2D
-
     """
 
     if len(dot1) != 2 or len(dot2) != 2:
